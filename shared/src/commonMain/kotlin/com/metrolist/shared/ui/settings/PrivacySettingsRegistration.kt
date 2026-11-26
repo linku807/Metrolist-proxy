@@ -140,6 +140,40 @@ internal fun SettingsUiRegistryBuilder.registerPrivacySettings(host: SharedSetti
                 ) { settings.blockScreenshots = it }
             }
         }
+        if (host.platform == SettingsPlatform.ANDROID) {
+            group("networkProxy", "Network proxy", footer = "Routes Metrolist network requests through the configured proxy. Invalid settings fail closed instead of silently connecting directly.") {
+                mainSwitch(
+                    id = "networkProxyEnabled",
+                    title = "Use proxy",
+                    description = "Apply the proxy to app network requests.",
+                    checked = settings.networkProxyEnabled,
+                ) { settings.networkProxyEnabled = it }
+                choice(
+                    id = "networkProxyType",
+                    title = "Proxy type",
+                    choices = listOf(
+                        SettingsChoice("HTTP", "HTTP"),
+                        SettingsChoice("SOCKS", "SOCKS5"),
+                    ),
+                    selectedChoiceId = settings.networkProxyType,
+                    enabled = settings.networkProxyEnabled,
+                ) { settings.networkProxyType = it }
+                text(
+                    id = "networkProxyHost",
+                    title = "Proxy host",
+                    value = settings.networkProxyHost,
+                    placeholder = "127.0.0.1",
+                    enabled = settings.networkProxyEnabled,
+                ) { settings.networkProxyHost = it.trim() }
+                text(
+                    id = "networkProxyPort",
+                    title = "Proxy port",
+                    value = settings.networkProxyPort,
+                    placeholder = "8080",
+                    enabled = settings.networkProxyEnabled,
+                ) { settings.networkProxyPort = it.filter(Char::isDigit).take(5) }
+            }
+        }
         group("diagnostics", stringResource(Res.string.privacy_diagnostics)) {
             if (isCrashReportingAvailable()) {
                 switch(
