@@ -141,6 +141,10 @@ import com.metrolist.shared.constants.LyricsShowOriginalLyricsKey
 import com.metrolist.shared.constants.LyricsYoutubeCaptionsEnabledKey
 import com.metrolist.shared.constants.MatugenThemeKey
 import com.metrolist.shared.constants.MinimumSongDurationSecondsKey
+import com.metrolist.shared.constants.NetworkProxyEnabledKey
+import com.metrolist.shared.constants.NetworkProxyHostKey
+import com.metrolist.shared.constants.NetworkProxyPortKey
+import com.metrolist.shared.constants.NetworkProxyTypeKey
 import com.metrolist.shared.constants.MusicVideoCacheJsonKey
 import com.metrolist.shared.constants.MusicVideoPlaybackEnabledKey
 import com.metrolist.shared.constants.MusicVideoQualityKey
@@ -640,10 +644,10 @@ class Settings(
     var pendingUpdateReleaseJson by preference("")
     var enableLogging by preference(false)
     var sentryEnabled by preference(SentryEnabledKey, false)
-    var networkProxyEnabled by preference("networkProxyEnabled", false)
-    var networkProxyType by preference("networkProxyType", "HTTP")
-    var networkProxyHost by preference("networkProxyHost", "")
-    var networkProxyPort by preference("networkProxyPort", "8080")
+    var networkProxyEnabled by preference(NetworkProxyEnabledKey, false)
+    var networkProxyType by preference(NetworkProxyTypeKey, "HTTP")
+    var networkProxyHost by preference(NetworkProxyHostKey, "")
+    var networkProxyPort by preference(NetworkProxyPortKey, "8080")
     var blockScreenshots by preference(false)
     var keepScreenOnMode by preference(KeepScreenOnMode.NEVER)
     var enableDiscordIntegration by preference(false)
