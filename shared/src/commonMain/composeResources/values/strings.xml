@@ -1250,6 +1250,17 @@
 
     <!-- Privacy Settings -->
     <!-- Translators: Heading for privacy settings in the Privacy settings. -->
+    <string name="network_proxy_group_title">Network proxy</string>
+    <string name="network_proxy_group_footer">Routes Metrolist network requests through the configured proxy. Invalid settings fail closed instead of silently connecting directly. Restart the app after changing proxy settings.</string>
+    <string name="network_proxy_enabled_title">Use proxy</string>
+    <string name="network_proxy_enabled_description">Apply the proxy to app network requests.</string>
+    <string name="network_proxy_type_title">Proxy type</string>
+    <string name="network_proxy_http">HTTP</string>
+    <string name="network_proxy_socks5">SOCKS5</string>
+    <string name="network_proxy_host_title">Proxy host</string>
+    <string name="network_proxy_host_placeholder">127.0.0.1</string>
+    <string name="network_proxy_port_title">Proxy port</string>
+    <string name="network_proxy_port_placeholder">8080</string>
     <string name="privacy_settings_title">Privacy</string>
     <!-- Translators: Option or section label for diagnostics in the Privacy settings. -->
     <string name="privacy_diagnostics">Diagnostics</string>
