@@ -1525,6 +1525,7 @@ internal val retiredPortableSettingTypes =
         "sideMenuWelcomeSeen" to SettingType.BOOLEAN,
         "androidMiniPlayerVisible" to SettingType.BOOLEAN,
         "enableGoogleCast" to SettingType.BOOLEAN,
+        "lyricsAiDetectorModel" to SettingType.STRING,
     )
 
 private fun PortableSetting.isValidValue(): Boolean =
