@@ -22,6 +22,8 @@ val NetworkProxyEnabledKey = "networkProxyEnabled"
 val NetworkProxyTypeKey = "networkProxyType"
 val NetworkProxyHostKey = "networkProxyHost"
 val NetworkProxyPortKey = "networkProxyPort"
+val NetworkProxyUsernameKey = "networkProxyUsername"
+val NetworkProxyPasswordKey = "networkProxyPassword"
 
 val SleepTimerDefaultMinutesKey = "sleepTimerDefaultMinutes"
 val SleepTimerDefaultFinishCurrentSongKey = "sleepTimerDefaultFinishCurrentSong"
