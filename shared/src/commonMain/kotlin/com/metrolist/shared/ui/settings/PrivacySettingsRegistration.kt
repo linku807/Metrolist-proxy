@@ -170,6 +170,21 @@ internal fun SettingsUiRegistryBuilder.registerPrivacySettings(host: SharedSetti
                     enabled = settings.networkProxyEnabled,
                 ) { settings.networkProxyHost = it.trim() }
                 text(
+                    id = "networkProxyUsername",
+                    title = stringResource(Res.string.network_proxy_username_title),
+                    value = settings.networkProxyUsername,
+                    placeholder = stringResource(Res.string.network_proxy_username_placeholder),
+                    enabled = settings.networkProxyEnabled && settings.networkProxyType == "HTTP",
+                ) { settings.networkProxyUsername = it }
+                text(
+                    id = "networkProxyPassword",
+                    title = stringResource(Res.string.network_proxy_password_title),
+                    value = settings.networkProxyPassword,
+                    placeholder = stringResource(Res.string.network_proxy_password_placeholder),
+                    enabled = settings.networkProxyEnabled && settings.networkProxyType == "HTTP",
+                    secret = true,
+                ) { settings.networkProxyPassword = it }
+                text(
                     id = "networkProxyPort",
                     title = stringResource(Res.string.network_proxy_port_title),
                     value = settings.networkProxyPort,
