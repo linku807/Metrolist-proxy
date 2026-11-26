@@ -1251,7 +1251,7 @@
     <!-- Privacy Settings -->
     <!-- Translators: Heading for privacy settings in the Privacy settings. -->
     <string name="network_proxy_group_title">Network proxy</string>
-    <string name="network_proxy_group_footer">Routes Metrolist network requests through the configured proxy. Invalid settings fail closed instead of silently connecting directly. Restart the app after changing proxy settings.</string>
+    <string name="network_proxy_group_footer">Routes Metrolist network requests through the configured proxy. Invalid settings fail closed instead of silently connecting directly. HTTP proxy credentials use Basic authentication, which does not encrypt the credentials. Restart the app after changing proxy settings.</string>
     <string name="network_proxy_enabled_title">Use proxy</string>
     <string name="network_proxy_enabled_description">Apply the proxy to app network requests.</string>
     <string name="network_proxy_type_title">Proxy type</string>
@@ -1261,6 +1261,11 @@
     <string name="network_proxy_host_placeholder">127.0.0.1</string>
     <string name="network_proxy_port_title">Proxy port</string>
     <string name="network_proxy_port_placeholder">8080</string>
+    <string name="network_proxy_username_title">Username</string>
+    <string name="network_proxy_username_placeholder">Optional</string>
+    <string name="network_proxy_password_title">Password</string>
+    <string name="network_proxy_password_placeholder">Optional</string>
+    <string name="network_proxy_auth_warning">HTTP proxy credentials use Basic authentication. They are not encrypted by the authentication scheme itself.</string>
     <string name="privacy_settings_title">Privacy</string>
     <!-- Translators: Option or section label for diagnostics in the Privacy settings. -->
     <string name="privacy_diagnostics">Diagnostics</string>
