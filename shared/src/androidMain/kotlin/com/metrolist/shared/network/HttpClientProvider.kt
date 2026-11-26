@@ -10,22 +10,25 @@ import java.net.ProxySelector
 import java.net.SocketAddress
 import java.net.URI
 
-private class MetrolistProxySelector : ProxySelector() {
+private class MetrolistProxySelector(
+    private val enabled: Boolean,
+    private val proxyType: String,
+    private val proxyHost: String,
+    private val proxyPort: String,
+) : ProxySelector() {
     override fun select(uri: URI): List<Proxy> {
         requireNotNull(uri) { "URI must not be null" }
+        if (!enabled) return listOf(Proxy.NO_PROXY)
 
-        val settings = Settings.shared
-        if (!settings.networkProxyEnabled) return listOf(Proxy.NO_PROXY)
-
-        val host = settings.networkProxyHost.trim()
-        val port = settings.networkProxyPort.toIntOrNull()
+        val host = proxyHost.trim()
+        val port = proxyPort.toIntOrNull()
         if (host.isBlank() || port == null || port !in 1..65535) {
             // An enabled but invalid proxy must not silently fall back to a direct connection.
             return emptyList()
         }
 
         val type =
-            when (settings.networkProxyType.uppercase()) {
+            when (proxyType.uppercase()) {
                 "HTTP" -> Proxy.Type.HTTP
                 "SOCKS", "SOCKS5" -> Proxy.Type.SOCKS
                 else -> return emptyList()
@@ -43,9 +46,18 @@ private class MetrolistProxySelector : ProxySelector() {
     }
 }
 
-internal actual fun apiOkHttpClient(): OkHttpClient =
-    sharedOkHttpClient
+internal actual fun apiOkHttpClient(): OkHttpClient {
+    val settings = Settings.shared
+    return sharedOkHttpClient
         .newBuilder()
-        .proxySelector(MetrolistProxySelector())
+        .proxySelector(
+            MetrolistProxySelector(
+                enabled = settings.networkProxyEnabled,
+                proxyType = settings.networkProxyType,
+                proxyHost = settings.networkProxyHost,
+                proxyPort = settings.networkProxyPort,
+            ),
+        )
         .cache(Cache(File(System.getProperty("java.io.tmpdir"), "http_cache"), 50L * 1024L * 1024L))
         .build()
+}
