@@ -141,7 +141,7 @@ internal fun SettingsUiRegistryBuilder.registerPrivacySettings(host: SharedSetti
             }
         }
         if (host.platform == SettingsPlatform.ANDROID) {
-            group("networkProxy", "Network proxy", footer = "Routes Metrolist network requests through the configured proxy. Invalid settings fail closed instead of silently connecting directly.") {
+            group("networkProxy", "Network proxy", footer = "Routes Metrolist network requests through the configured proxy. Invalid settings fail closed instead of silently connecting directly. Restart the app after changing proxy settings.") {
                 mainSwitch(
                     id = "networkProxyEnabled",
                     title = "Use proxy",
