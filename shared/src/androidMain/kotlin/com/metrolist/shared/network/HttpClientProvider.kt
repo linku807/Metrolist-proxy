@@ -1,7 +1,9 @@
 package com.metrolist.shared.network
 
 import com.metrolist.shared.settings.Settings
+import okhttp3.Authenticator
 import okhttp3.Cache
+import okhttp3.Credentials
 import okhttp3.OkHttpClient
 import java.io.File
 import java.net.InetSocketAddress
@@ -48,6 +50,29 @@ private class MetrolistProxySelector(
 
 internal actual fun apiOkHttpClient(): OkHttpClient {
     val settings = Settings.shared
+    val useHttpProxyAuth =
+        settings.networkProxyEnabled &&
+            settings.networkProxyType.equals("HTTP", ignoreCase = true) &&
+            settings.networkProxyUsername.isNotBlank()
+    val proxyAuthenticator =
+        if (useHttpProxyAuth) {
+            Authenticator { _, response ->
+                if (response.request.header("Proxy-Authorization") != null) {
+                    null
+                } else {
+                    response.request
+                        .newBuilder()
+                        .header(
+                            "Proxy-Authorization",
+                            Credentials.basic(settings.networkProxyUsername, settings.networkProxyPassword),
+                        )
+                        .build()
+                }
+            }
+        } else {
+            Authenticator.NONE
+        }
+
     return sharedOkHttpClient
         .newBuilder()
         .proxySelector(
@@ -58,6 +83,7 @@ internal actual fun apiOkHttpClient(): OkHttpClient {
                 proxyPort = settings.networkProxyPort,
             ),
         )
+        .proxyAuthenticator(proxyAuthenticator)
         .cache(Cache(File(System.getProperty("java.io.tmpdir"), "http_cache"), 50L * 1024L * 1024L))
         .build()
 }
