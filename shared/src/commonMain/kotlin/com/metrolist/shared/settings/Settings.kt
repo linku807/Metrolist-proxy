@@ -144,6 +144,8 @@ import com.metrolist.shared.constants.MinimumSongDurationSecondsKey
 import com.metrolist.shared.constants.NetworkProxyEnabledKey
 import com.metrolist.shared.constants.NetworkProxyHostKey
 import com.metrolist.shared.constants.NetworkProxyPortKey
+import com.metrolist.shared.constants.NetworkProxyUsernameKey
+import com.metrolist.shared.constants.NetworkProxyPasswordKey
 import com.metrolist.shared.constants.NetworkProxyTypeKey
 import com.metrolist.shared.constants.MusicVideoCacheJsonKey
 import com.metrolist.shared.constants.MusicVideoPlaybackEnabledKey
@@ -648,6 +650,8 @@ class Settings(
     var networkProxyType by preference(NetworkProxyTypeKey, "HTTP")
     var networkProxyHost by preference(NetworkProxyHostKey, "")
     var networkProxyPort by preference(NetworkProxyPortKey, "8080")
+    var networkProxyUsername by preference(NetworkProxyUsernameKey, "")
+    var networkProxyPassword by preference(NetworkProxyPasswordKey, "")
     var blockScreenshots by preference(false)
     var keepScreenOnMode by preference(KeepScreenOnMode.NEVER)
     var enableDiscordIntegration by preference(false)
