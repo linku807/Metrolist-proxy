@@ -18,6 +18,10 @@ val DesktopWindowPositionKey = "desktopWindowPosition"
 val DesktopWindowPlacementKey = "desktopWindowPlacement"
 
 val SponsorBlockEnabledKey = "sponsorBlockEnabled"
+val NetworkProxyEnabledKey = "networkProxyEnabled"
+val NetworkProxyTypeKey = "networkProxyType"
+val NetworkProxyHostKey = "networkProxyHost"
+val NetworkProxyPortKey = "networkProxyPort"
 
 val SleepTimerDefaultMinutesKey = "sleepTimerDefaultMinutes"
 val SleepTimerDefaultFinishCurrentSongKey = "sleepTimerDefaultFinishCurrentSong"
