@@ -141,35 +141,39 @@ internal fun SettingsUiRegistryBuilder.registerPrivacySettings(host: SharedSetti
             }
         }
         if (host.platform == SettingsPlatform.ANDROID) {
-            group("networkProxy", "Network proxy", footer = "Routes Metrolist network requests through the configured proxy. Invalid settings fail closed instead of silently connecting directly. Restart the app after changing proxy settings.") {
+            group(
+                "networkProxy",
+                stringResource(Res.string.network_proxy_group_title),
+                footer = stringResource(Res.string.network_proxy_group_footer),
+            ) {
                 mainSwitch(
                     id = "networkProxyEnabled",
-                    title = "Use proxy",
-                    description = "Apply the proxy to app network requests.",
+                    title = stringResource(Res.string.network_proxy_enabled_title),
+                    description = stringResource(Res.string.network_proxy_enabled_description),
                     checked = settings.networkProxyEnabled,
                 ) { settings.networkProxyEnabled = it }
                 choice(
                     id = "networkProxyType",
-                    title = "Proxy type",
+                    title = stringResource(Res.string.network_proxy_type_title),
                     choices = listOf(
-                        SettingsChoice("HTTP", "HTTP"),
-                        SettingsChoice("SOCKS", "SOCKS5"),
+                        SettingsChoice("HTTP", stringResource(Res.string.network_proxy_http)),
+                        SettingsChoice("SOCKS", stringResource(Res.string.network_proxy_socks5)),
                     ),
                     selectedChoiceId = settings.networkProxyType,
                     enabled = settings.networkProxyEnabled,
                 ) { settings.networkProxyType = it }
                 text(
                     id = "networkProxyHost",
-                    title = "Proxy host",
+                    title = stringResource(Res.string.network_proxy_host_title),
                     value = settings.networkProxyHost,
-                    placeholder = "127.0.0.1",
+                    placeholder = stringResource(Res.string.network_proxy_host_placeholder),
                     enabled = settings.networkProxyEnabled,
                 ) { settings.networkProxyHost = it.trim() }
                 text(
                     id = "networkProxyPort",
-                    title = "Proxy port",
+                    title = stringResource(Res.string.network_proxy_port_title),
                     value = settings.networkProxyPort,
-                    placeholder = "8080",
+                    placeholder = stringResource(Res.string.network_proxy_port_placeholder),
                     enabled = settings.networkProxyEnabled,
                 ) { settings.networkProxyPort = it.filter(Char::isDigit).take(5) }
             }
