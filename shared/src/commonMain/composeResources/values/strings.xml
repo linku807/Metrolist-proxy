@@ -1265,7 +1265,6 @@
     <string name="network_proxy_username_placeholder">Optional</string>
     <string name="network_proxy_password_title">Password</string>
     <string name="network_proxy_password_placeholder">Optional</string>
-    <string name="network_proxy_auth_warning">HTTP proxy credentials use Basic authentication. They are not encrypted by the authentication scheme itself.</string>
     <string name="privacy_settings_title">Privacy</string>
     <!-- Translators: Option or section label for diagnostics in the Privacy settings. -->
     <string name="privacy_diagnostics">Diagnostics</string>
